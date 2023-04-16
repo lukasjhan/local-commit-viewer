@@ -16,7 +16,7 @@ const weeksInLastSixMonths = 26
 type column []int
 
 func stats() {
-	commits := processRepositories()
+	commits := getCommitMapFromRepos()
 	printCommitsStats(commits)
 }
 
@@ -64,15 +64,18 @@ func fillCommits(path string, commits map[int]int) map[int]int {
 	return commits
 }
 
-func processRepositories() map[int]int {
-	filePath := getDotFilePath()
-	repos := parseFileLinesToSlice(filePath)
-	daysInMap := daysInLastSixMonths
-
-	commits := make(map[int]int, daysInMap)
-	for i := daysInMap; i >= 0; i-- {
+func initCommitMap() map[int]int {
+	commits := make(map[int]int, daysInLastSixMonths)
+	for i := daysInLastSixMonths; i >= 0; i-- {
 		commits[i] = 0
 	}
+	return commits
+}
+
+func getCommitMapFromRepos() map[int]int {
+	filePath := getDotFilePath()
+	repos := parseFileLinesToSlice(filePath)
+	commits := initCommitMap()
 
 	for _, path := range repos {
 		commits = fillCommits(path, commits)
