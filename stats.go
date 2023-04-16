@@ -73,7 +73,7 @@ func initCommitMap() map[int]int {
 }
 
 func getCommitMapFromRepos() map[int]int {
-	filePath := getDotFilePath()
+	filePath := getConfigFilePath()
 	repos := parseFileLinesToSlice(filePath)
 	commits := initCommitMap()
 

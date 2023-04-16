@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func getDotFilePath() string {
+func getConfigFilePath() string {
 	usr, err := user.Current()
 	if err != nil {
 		log.Fatal(err)
@@ -124,7 +124,7 @@ func scanGitFolders(folders []string, folder string) []string {
 func scan(folder string) {
 	fmt.Printf("Found folders:\n\n")
 	repositories := recursiveScanFolder(folder)
-	filePath := getDotFilePath()
+	filePath := getConfigFilePath()
 	addNewSliceElementsToFile(filePath, repositories)
 	fmt.Printf("\n\nSuccessfully added\n\n")
 }
