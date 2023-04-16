@@ -142,7 +142,6 @@ func sortMapIntoSlice(m map[int]int) []int {
 		keys = append(keys, k)
 	}
 	sort.Ints(keys)
-
 	return keys
 }
 
