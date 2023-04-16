@@ -85,27 +85,18 @@ func getCommitMapFromRepos() map[int]int {
 }
 
 func calcOffset() int {
-	var offset int
-	weekday := time.Now().Weekday()
-
-	switch weekday {
-	case time.Sunday:
-		offset = 7
-	case time.Monday:
-		offset = 6
-	case time.Tuesday:
-		offset = 5
-	case time.Wednesday:
-		offset = 4
-	case time.Thursday:
-		offset = 3
-	case time.Friday:
-		offset = 2
-	case time.Saturday:
-		offset = 1
+	offsets := map[time.Weekday]int{
+		time.Sunday:    7,
+		time.Monday:    6,
+		time.Tuesday:   5,
+		time.Wednesday: 4,
+		time.Thursday:  3,
+		time.Friday:    2,
+		time.Saturday:  1,
 	}
 
-	return offset
+	weekday := time.Now().Weekday()
+	return offsets[weekday]
 }
 
 func printCell(val int, today bool) {
