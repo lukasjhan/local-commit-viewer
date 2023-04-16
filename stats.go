@@ -213,15 +213,7 @@ func printMonths() {
 }
 
 func printDayCol(day int) {
-	out := "     "
-	switch day {
-	case 1:
-		out = " Mon "
-	case 3:
-		out = " Wed "
-	case 5:
-		out = " Fri "
-	}
-
-	fmt.Printf("%s", out)
+	empty := "     "
+	days := []string{empty, " Mon ", empty, " Wed ", empty, " Fri ", empty}
+	fmt.Printf("%s", days[day])
 }
