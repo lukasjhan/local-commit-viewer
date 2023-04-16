@@ -11,13 +11,15 @@ import (
 	"strings"
 )
 
+const configFileName = "/.commitviewerrepos"
+
 func getConfigFilePath() string {
 	usr, err := user.Current()
 	if err != nil {
 		log.Fatal(err)
 	}
 
-	dotFile := usr.HomeDir + "/.commitviewerrepos"
+	dotFile := usr.HomeDir + configFileName
 	return dotFile
 }
 
