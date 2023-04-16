@@ -39,7 +39,7 @@ func countDaysSinceDate(date time.Time) int {
 	return days
 }
 
-func fillCommits(path string, commits map[int]int) map[int]int {
+func calculateCommitMap(path string, commits map[int]int) map[int]int {
 	repo, err := git.PlainOpen(path)
 	if err != nil {
 		return commits
@@ -78,7 +78,7 @@ func getCommitMapFromRepos() map[int]int {
 	commits := initCommitMap()
 
 	for _, path := range repos {
-		commits = fillCommits(path, commits)
+		commits = calculateCommitMap(path, commits)
 	}
 
 	return commits
